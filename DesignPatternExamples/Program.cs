@@ -1,43 +1,50 @@
-﻿using DesignPatternExamples.Observer.Entittes;
-using DesignPatternExamples.Observer;
-using DesignPatternExamples.Strategy.CheckoutStrategyManager;
-using DesignPatternExamples.Strategy.Entities;
-using DesignPatternExamples.Strategy.Strategy_Factory;
+﻿using DesignPatternExamples.Observer;
+using DesignPatternExamples.Strategy;
+using DesignPatternExamples.Template;
 
-var eventManager = new MarketplaceEventManager();
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("Choose a design pattern to run:");
+Console.WriteLine("1 - Observer Pattern");
+Console.WriteLine("2 - Strategy Pattern");
+Console.WriteLine("3 - Template Pattern");
+Console.WriteLine("Enter 'exit' to quit.");
+Console.ResetColor();
 
-var customer1 = new Customer("Ibrahim");
-var customer2 = new Customer("Ahmed");
-var seller = new Seller("Ali");
+string? input;
+do
+{
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.Write("\nEnter your choice: ");
+    Console.ResetColor();
+    input = Console.ReadLine();
 
-// Subscribe
-eventManager.Subscribe(MarketplaceEvent.NewProduct, customer1);
-eventManager.Subscribe(MarketplaceEvent.PriceDrop, customer2);
-eventManager.Subscribe(MarketplaceEvent.FlashSale, seller);
-eventManager.Subscribe(MarketplaceEvent.NewProduct, seller);
-
-// Publish Events
-eventManager.Publish(MarketplaceEvent.NewProduct, "New Phone released!");
-eventManager.Publish(MarketplaceEvent.PriceDrop, "Price dropped on TV!");
-eventManager.Publish(MarketplaceEvent.FlashSale, "2-Hour Flash Sale!");
-
-// Unsubscribe
-eventManager.Unsubscribe(MarketplaceEvent.NewProduct, seller);
-
-Console.WriteLine("\nAfter unsubscription:\n");
-eventManager.Publish(MarketplaceEvent.NewProduct, "New Tablet launched!");
-////////////////////////////////////////////
-/// ///////////////////////////////////////////
- Console.WriteLine("\n////StratgyPattern//////:\n");
-
-var pricingType = PricingStrategyType.Premium;
-var checkoutType = CheckoutStrategyType.CashOnDelivery;
-
-var pricingStrategy = StrategyFactory.GetPricingStrategy(pricingType);
-var checkoutStrategy = StrategyFactory.GetCheckoutStrategy(checkoutType);
-
-var product = new Product("Smartphone", 1000, pricingStrategy);
-
-var processor = new CheckoutProcessor(checkoutStrategy);
-processor.Process(product);
-
+    switch (input)
+    {
+        case "1":
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nRunning Observer Pattern Example:\n");
+            Console.ResetColor();
+            ObserverDemo.Run();
+            break;
+        case "2":
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nRunning Strategy Pattern Example:\n");
+            Console.ResetColor();
+            StrategyDemo.Run();
+            break;
+        case "3":
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nRunning Template Pattern Example:\n");
+            Console.ResetColor();
+            TemplateDemo.Run();
+            break;
+        case "exit":
+            Console.WriteLine("Exiting...");
+            break;
+        default:
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Invalid choice. Please enter 1, 2, 3 or 'exit'.");
+            Console.ResetColor();
+            break;
+    }
+} while (input?.ToLower() != "exit");
