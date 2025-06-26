@@ -1,4 +1,5 @@
-﻿using DesignPatternExamples.Observer;
+﻿using DesignPatternExamples.Memento;
+using DesignPatternExamples.Observer;
 using DesignPatternExamples.Strategy;
 using DesignPatternExamples.Template;
 
@@ -7,6 +8,7 @@ Console.WriteLine("Choose a design pattern to run:");
 Console.WriteLine("1 - Observer Pattern");
 Console.WriteLine("2 - Strategy Pattern");
 Console.WriteLine("3 - Template Pattern");
+Console.WriteLine("4 - Memento Pattern");
 Console.WriteLine("Enter 'exit' to quit.");
 Console.ResetColor();
 
@@ -37,6 +39,12 @@ do
             Console.WriteLine("\nRunning Template Pattern Example:\n");
             Console.ResetColor();
             TemplateDemo.Run();
+            break;
+        case "4":
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nRunning Memento Pattern Example:\n");
+            Console.ResetColor();
+            MementoDemo.Run();
             break;
         case "exit":
             Console.WriteLine("Exiting...");
