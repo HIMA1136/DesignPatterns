@@ -1,4 +1,5 @@
-﻿using DesignPatternExamples.Memento;
+﻿using DesignPatternExamples.Iterator;
+using DesignPatternExamples.Memento;
 using DesignPatternExamples.Observer;
 using DesignPatternExamples.Strategy;
 using DesignPatternExamples.Template;
@@ -11,6 +12,8 @@ Console.WriteLine("2 - Strategy Pattern");
 Console.WriteLine("3 - Template Pattern");
 Console.WriteLine("4 - Memento Pattern");
 Console.WriteLine("5 - Visitor Pattern");
+Console.WriteLine("6 - Iterator Pattern");
+
 Console.WriteLine("Enter 'exit' to quit.");
 Console.ResetColor();
 
@@ -53,6 +56,12 @@ do
             Console.WriteLine("\nRunning Visitor Pattern Example:\n");
             Console.ResetColor();
             VisitorDemo.Run();
+            break;
+        case "6":
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nRunning Iterator Pattern Example:\n");
+            Console.ResetColor();
+            IteratorDemo.Run();
             break;
         case "exit":
             Console.WriteLine("Exiting...");
