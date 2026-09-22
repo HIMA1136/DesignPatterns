@@ -1,0 +1,150 @@
+{
+  "info": {
+    "_postman_id": "7d85c642-9f8f-4d80-8c2f-0e36dd8cb20c",
+    "name": "DocumentExtractionService API",
+    "description": "Postman collection generated from the provided OpenAPI 3.0.3 document for DocumentExtractionService API version 1.0.0.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "documentPath",
+      "value": "/absolute/path/to/document.pdf"
+    },
+    {
+      "key": "schemaJson",
+      "value": "{\"type\":\"object\",\"properties\":{\"invoiceNumber\":{\"type\":[\"string\",\"null\"]},\"total\":{\"type\":[\"number\",\"null\"]}}}"
+    },
+    {
+      "key": "language",
+      "value": "auto"
+    },
+    {
+      "key": "ocrEngine",
+      "value": "2"
+    },
+    {
+      "key": "includeLayoutContext",
+      "value": "false"
+    },
+    {
+      "key": "detectTables",
+      "value": "false"
+    },
+    {
+      "key": "model",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Service",
+      "item": [
+        {
+          "name": "Service Metadata",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Returns service name and API version."
+          },
+          "response": []
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Returns service health status."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Extraction",
+      "item": [
+        {
+          "name": "Extract Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "{{documentPath}}"
+                },
+                {
+                  "key": "schema",
+                  "value": "{{schemaJson}}",
+                  "type": "text"
+                },
+                {
+                  "key": "language",
+                  "value": "{{language}}",
+                  "type": "text"
+                },
+                {
+                  "key": "ocrEngine",
+                  "value": "{{ocrEngine}}",
+                  "type": "text"
+                },
+                {
+                  "key": "includeLayoutContext",
+                  "value": "{{includeLayoutContext}}",
+                  "type": "text"
+                },
+                {
+                  "key": "detectTables",
+                  "value": "{{detectTables}}",
+                  "type": "text"
+                },
+                {
+                  "key": "model",
+                  "value": "{{model}}",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/extract",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "extract"
+              ]
+            },
+            "description": "Uploads a PDF, PNG, or JPEG plus a JSON schema string and returns OCR text and structured extraction output."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
